@@ -1,13 +1,13 @@
 import React from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+import {Text, StyleSheet, View, SafeAreaView} from 'react-native';
 import ProfileController from './ProfileController';
 
 export default class Profile extends ProfileController {
   render() {
     return (
-      <View>
+      <SafeAreaView>
         <Text>Profile</Text>
-      </View>
+      </SafeAreaView>
     );
   }
 }
