@@ -1,13 +1,13 @@
 import React from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+import {Text, StyleSheet, View, SafeAreaView} from 'react-native';
 import HomeController from './HomeController';
 
 export default class Home extends HomeController {
   render() {
     return (
-      <View>
+      <SafeAreaView>
         <Text>Home</Text>
-      </View>
+      </SafeAreaView>
     );
   }
 }
