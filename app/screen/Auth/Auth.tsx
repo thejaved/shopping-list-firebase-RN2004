@@ -22,9 +22,10 @@ export default class Auth extends AuthController {
   renderLogin = () => {
     return (
       <>
-        <AppInput placeholder="Email" />
+        <AppInput placeholder="Email" onChangeText={this.handleEmailText} />
         <AppInput
           placeholder="Password"
+          onChangeText={this.handlePasswordText}
           containerStyle={styles.inputContainerStyle}
         />
         <AppButton
@@ -32,7 +33,11 @@ export default class Auth extends AuthController {
           onPress={this.handleSwitch}
           containerStyle={styles.buttonContainerStyle1}
         />
-        <AppButton title="Login" containerStyle={styles.buttonContainerStyle} />
+        <AppButton
+          title="Login"
+          onPress={this.handleLogin}
+          containerStyle={styles.buttonContainerStyle}
+        />
       </>
     );
   };
@@ -40,17 +45,23 @@ export default class Auth extends AuthController {
   renderSignUp = () => {
     return (
       <>
-        <AppInput placeholder="Full Name" />
+        <AppInput
+          placeholder="Full Name"
+          onChangeText={this.handleFullNameText}
+        />
         <AppInput
           placeholder="Email"
+          onChangeText={this.handleEmailText}
           containerStyle={styles.inputContainerStyle}
         />
         <AppInput
           placeholder="Password"
+          onChangeText={this.handlePasswordText}
           containerStyle={styles.inputContainerStyle}
         />
         <AppInput
           placeholder="Confirm Password"
+          onChangeText={this.handleConfirmPasswordText}
           containerStyle={styles.inputContainerStyle}
         />
         <AppButton
@@ -60,6 +71,7 @@ export default class Auth extends AuthController {
         />
         <AppButton
           title="Sign Up"
+          onPress={this.handleSignUp}
           containerStyle={styles.buttonContainerStyle}
         />
       </>

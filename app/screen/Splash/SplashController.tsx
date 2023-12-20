@@ -14,9 +14,10 @@ export default class SplashController extends Component<P, S> {
     this.state = {};
   }
   async componentDidMount() {
-    let Token = await AsyncStorage.getItem('Token');
+    // await AsyncStorage.removeItem('AUTHID');
+    let AUTHID = await AsyncStorage.getItem('AUTHID');
     setTimeout(() => {
-      if (Token) this.props.navigation?.navigate('AppDrawer');
+      if (AUTHID) this.props.navigation?.navigate('AppDrawer');
       else this.props.navigation?.navigate('Auth');
     }, 500);
   }
