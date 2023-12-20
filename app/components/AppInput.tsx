@@ -1,20 +1,31 @@
 import React from 'react';
 import {colors, fonts} from '../config';
 import {
+  StyleProp,
+  StyleSheet,
+  TextInput,
+  TextInputProps,
+  View,
+  ViewStyle,
+} from 'react-native';
+import {
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
-import {StyleProp, StyleSheet, TextInput, View, ViewStyle} from 'react-native';
 
-interface P {
+interface AppInputProps extends TextInputProps {
   placeholder?: string;
   containerStyle?: StyleProp<ViewStyle>;
 }
 
-const AppInput: React.FC<P> = ({placeholder, containerStyle}) => {
+const AppInput: React.FC<AppInputProps> = ({
+  placeholder,
+  containerStyle,
+  ...props
+}) => {
   return (
     <View style={[styles.inputContianer, containerStyle]}>
-      <TextInput style={styles.input} placeholder={placeholder} />
+      <TextInput style={styles.input} placeholder={placeholder} {...props} />
     </View>
   );
 };
