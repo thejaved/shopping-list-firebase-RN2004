@@ -1,6 +1,6 @@
 import {Component} from 'react';
 import {BackHandler, Alert} from 'react-native';
-import {addUser, loginUser} from '../../controllers/AuthController';
+import {loginUser, registerUser} from '../../controllers/AuthController';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {NavigationProp, ParamListBase} from '@react-navigation/native';
 
@@ -115,7 +115,7 @@ export default class AuthController extends Component<P, S> {
       this.validateConfirmPassword(password, confirmPassword)
     ) {
       try {
-        const user = await addUser({fullName, email, password});
+        const user = await registerUser({fullName, email, password});
 
         if (user !== undefined && user !== null) {
           await AsyncStorage.setItem('AUTHID', user.id);

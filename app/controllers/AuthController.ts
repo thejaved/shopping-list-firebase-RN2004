@@ -7,7 +7,7 @@ type UserType = {
   password: string;
 };
 
-const addUser = async (userData: UserType) => {
+const registerUser = async (userData: UserType) => {
   try {
     const {email} = userData;
 
@@ -62,4 +62,4 @@ const isUserExists = async (email: string): Promise<boolean> => {
   return !querySnapshot.empty;
 };
 
-export {addUser, loginUser};
+export {registerUser, loginUser};
