@@ -1,3 +1,17 @@
+import {
+  DrawerActions,
+  NavigationProp,
+  ParamListBase,
+} from '@react-navigation/native';
 import {Component} from 'react';
 
-export default class HomeController extends Component {}
+interface P {
+  navigation: NavigationProp<ParamListBase>;
+}
+interface S {}
+
+export default class HomeController extends Component<P, S> {
+  onToggleDrawer = () => {
+    this.props.navigation.dispatch(DrawerActions.toggleDrawer());
+  };
+}

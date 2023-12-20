@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
 import AppStack from './AppStack';
+import {NavigationContainer} from '@react-navigation/native';
 
 export default class MainNavigationContainer extends React.Component {
   render() {
