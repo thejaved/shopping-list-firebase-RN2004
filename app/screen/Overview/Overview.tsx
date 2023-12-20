@@ -1,15 +1,15 @@
 import React from 'react';
 import {colors} from '../../config';
 import {AppHeader} from '../../components';
-import ProfileController from './ProfileController';
-import {Text, StyleSheet, SafeAreaView} from 'react-native';
+import OverviewController from './OverviewController';
+import {Text, StyleSheet, View, SafeAreaView} from 'react-native';
 
-export default class Profile extends ProfileController {
+export default class Overview extends OverviewController {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <AppHeader title="Profile" />
-        <Text>Profile</Text>
+        <AppHeader title="Overview" onPressRightIcon={this.onToggleDrawer} />
+        <Text>Overview</Text>
       </SafeAreaView>
     );
   }
