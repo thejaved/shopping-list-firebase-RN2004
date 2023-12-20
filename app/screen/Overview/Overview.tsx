@@ -1,8 +1,8 @@
 import React from 'react';
-import {Text, StyleSheet, View, SafeAreaView} from 'react-native';
-import OverviewController from './OverviewController';
-import AppHeader from '../../components/AppHeader';
 import {colors} from '../../config';
+import {AppHeader} from '../../components';
+import OverviewController from './OverviewController';
+import {Text, StyleSheet, View, SafeAreaView} from 'react-native';
 
 export default class Overview extends OverviewController {
   render() {

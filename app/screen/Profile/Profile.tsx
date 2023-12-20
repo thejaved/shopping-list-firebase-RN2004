@@ -1,8 +1,8 @@
 import React from 'react';
-import {Text, StyleSheet, View, SafeAreaView} from 'react-native';
-import ProfileController from './ProfileController';
-import AppHeader from '../../components/AppHeader';
 import {colors} from '../../config';
+import {AppHeader} from '../../components';
+import ProfileController from './ProfileController';
+import {Text, StyleSheet, SafeAreaView} from 'react-native';
 
 export default class Profile extends ProfileController {
   render() {
