@@ -1,15 +1,15 @@
 import React from 'react';
 import {Text, StyleSheet, View, SafeAreaView} from 'react-native';
-import HomeController from './HomeController';
+import OverviewController from './OverviewController';
 import AppHeader from '../../components/AppHeader';
 import {colors} from '../../config';
 
-export default class Home extends HomeController {
+export default class Overview extends OverviewController {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <AppHeader title="Products" onPressRightIcon={this.onToggleDrawer} />
-        <Text>Products</Text>
+        <AppHeader title="Overview" onPressRightIcon={this.onToggleDrawer} />
+        <Text>Overview</Text>
       </SafeAreaView>
     );
   }
