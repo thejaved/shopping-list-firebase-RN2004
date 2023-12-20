@@ -14,11 +14,17 @@ export default class SplashController extends Component<P, S> {
     this.state = {};
   }
   async componentDidMount() {
-    // await AsyncStorage.removeItem('AUTHID');
+    this.props.navigation?.addListener('focus', () => {
+      this.hadnleNavigation();
+    });
+    this.hadnleNavigation();
+  }
+
+  hadnleNavigation = async () => {
     let AUTHID = await AsyncStorage.getItem('AUTHID');
     setTimeout(() => {
       if (AUTHID) this.props.navigation?.navigate('AppDrawer');
       else this.props.navigation?.navigate('Auth');
     }, 500);
-  }
+  };
 }
