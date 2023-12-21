@@ -1,5 +1,5 @@
-import firestore from '@react-native-firebase/firestore';
 import {Alert} from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 
 type UserType = {
   fullName: string;
