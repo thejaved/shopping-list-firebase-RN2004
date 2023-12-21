@@ -60,6 +60,7 @@ export default class OverviewController extends Component<P, S> {
     try {
       const authId = await AsyncStorage.getItem('AUTHID');
       if (authId) {
+        this.setState({refreshing: true});
         const userDoc = await firestore().collection('users').doc(authId).get();
         this.setState({
           allPost: userDoc.data()?.posts ?? [],
@@ -70,6 +71,8 @@ export default class OverviewController extends Component<P, S> {
       console.log('error', error);
     }
   };
+
+  handlePost = (item: any) => this.props.navigation?.navigate('ViewPost', item);
 
   onRefresh = () => {
     this.setState({refreshing: true});
