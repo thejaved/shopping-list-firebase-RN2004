@@ -4,20 +4,35 @@ import {
   ParamListBase,
 } from '@react-navigation/native';
 import {Component} from 'react';
-import {Alert, BackHandler} from 'react-native';
+import {BackHandler} from 'react-native';
+import firestore from '@react-native-firebase/firestore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+export interface post {
+  id: string;
+  title: string;
+  imageUrl: string;
+  timestamp: number;
+  description: string;
+}
 interface P {
   navigation?: NavigationProp<ParamListBase>;
 }
 
-interface S {}
+interface S {
+  allPost: post[];
+  refreshing: boolean;
+}
 
 export default class OverviewController extends Component<P, S> {
   private backHandler: any;
 
   constructor(props: P) {
     super(props);
-    this.state = {};
+    this.state = {
+      allPost: [],
+      refreshing: false,
+    };
   }
 
   componentDidMount() {
@@ -25,6 +40,7 @@ export default class OverviewController extends Component<P, S> {
       'hardwareBackPress',
       this.handleBackPress,
     );
+    this.handleGetAllPost();
   }
 
   componentWillUnmount() {
@@ -38,5 +54,25 @@ export default class OverviewController extends Component<P, S> {
 
   onToggleDrawer = () => {
     this.props.navigation?.dispatch(DrawerActions.toggleDrawer());
+  };
+
+  handleGetAllPost = async () => {
+    try {
+      const authId = await AsyncStorage.getItem('AUTHID');
+      if (authId) {
+        const userDoc = await firestore().collection('users').doc(authId).get();
+        this.setState({
+          allPost: userDoc.data()?.posts ?? [],
+          refreshing: false,
+        });
+      }
+    } catch (error) {
+      console.log('error', error);
+    }
+  };
+
+  onRefresh = () => {
+    this.setState({refreshing: true});
+    this.handleGetAllPost();
   };
 }

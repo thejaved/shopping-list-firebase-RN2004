@@ -79,6 +79,7 @@ export default class CreatePostController extends Component<P, S> {
         title: '',
         description: '',
       });
+      this.props.navigation?.navigate('Overview');
       Alert.alert('Success', 'Post created successfully');
     }
   };
