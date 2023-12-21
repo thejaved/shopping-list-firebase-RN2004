@@ -4,26 +4,38 @@ import {
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import {colors, fonts} from '../config';
-import {StyleProp, TouchableOpacityProps, ViewStyle} from 'react-native';
+import {
+  ActivityIndicator,
+  StyleProp,
+  TouchableOpacityProps,
+  ViewStyle,
+} from 'react-native';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 interface AppButtonProps extends TouchableOpacityProps {
   title: string;
   containerStyle?: StyleProp<ViewStyle>;
   labelColor?: string;
+  loading?: boolean;
 }
 
 const AppButton: React.FC<AppButtonProps> = ({
   title,
   containerStyle,
   labelColor = colors.white,
+  loading = false,
   ...props
 }) => {
   return (
     <TouchableOpacity
       style={[styles.buttonContainer, containerStyle]}
       {...props}>
-      <Text style={[styles.labelTitleStyle, {color: labelColor}]}>{title}</Text>
+      {loading && <ActivityIndicator size="small" color={colors.white} />}
+      {!loading && (
+        <Text style={[styles.labelTitleStyle, {color: labelColor}]}>
+          {title}
+        </Text>
+      )}
     </TouchableOpacity>
   );
 };

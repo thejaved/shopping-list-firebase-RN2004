@@ -36,6 +36,7 @@ export default class Auth extends AuthController {
         <AppButton
           title="Login"
           onPress={this.handleLogin}
+          loading={this.state.isLoading}
           containerStyle={styles.buttonContainerStyle}
         />
       </>
@@ -72,6 +73,7 @@ export default class Auth extends AuthController {
         <AppButton
           title="Sign Up"
           onPress={this.handleSignUp}
+          loading={this.state.isLoading}
           containerStyle={styles.buttonContainerStyle}
         />
       </>

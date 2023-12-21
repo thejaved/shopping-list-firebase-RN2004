@@ -1,6 +1,10 @@
 import {Component} from 'react';
 import {BackHandler, Alert} from 'react-native';
-import {loginUser, registerUser} from '../../controllers/AuthController';
+import {
+  getUserById,
+  loginUser,
+  registerUser,
+} from '../../controllers/AuthController';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {NavigationProp, ParamListBase} from '@react-navigation/native';
 
@@ -14,6 +18,7 @@ interface S {
   email: string;
   password: string;
   confirmPassword: string;
+  isLoading: boolean;
 }
 
 export default class AuthController extends Component<P, S> {
@@ -22,11 +27,12 @@ export default class AuthController extends Component<P, S> {
   constructor(props: P) {
     super(props);
     this.state = {
-      isRegister: true,
+      isRegister: false,
       fullName: '',
       email: '',
       password: '',
       confirmPassword: '',
+      isLoading: false,
     };
   }
 
@@ -115,11 +121,15 @@ export default class AuthController extends Component<P, S> {
       this.validateConfirmPassword(password, confirmPassword)
     ) {
       try {
+        this.setState({isLoading: true});
         const user = await registerUser({fullName, email, password});
 
         if (user !== undefined && user !== null) {
           await AsyncStorage.setItem('AUTHID', user.id);
-          this.props.navigation?.navigate('AppDrawer');
+          this.setState({isLoading: false});
+          let userDoc = await getUserById(user.id);
+          await AsyncStorage.setItem('USERDETAILS', JSON.stringify(userDoc));
+          this.props.navigation?.navigate('Splash');
         }
       } catch (error) {
         console.error('Error during sign-up:', error);
@@ -130,11 +140,15 @@ export default class AuthController extends Component<P, S> {
   handleLogin = async () => {
     try {
       const {email, password} = this.state;
+      this.setState({isLoading: true});
       const user = await loginUser(email, password);
       if (user !== undefined && user !== null) {
         await AsyncStorage.setItem('AUTHID', user.id);
-        this.props.navigation?.navigate('AppDrawer');
-      }
+        this.setState({isLoading: false});
+        let userDoc = await getUserById(user.id);
+        await AsyncStorage.setItem('USERDETAILS', JSON.stringify(userDoc));
+        this.props.navigation?.navigate('Splash');
+      } else this.setState({isLoading: false});
     } catch (error) {
       console.error('Error during sign-up:', error);
     }
