@@ -9,7 +9,7 @@ type UserType = {
 
 const registerUser = async (userData: UserType) => {
   try {
-    const {email} = userData;
+    const {email, fullName} = userData;
 
     const userExists = await isUserExists(email);
 
@@ -22,6 +22,8 @@ const registerUser = async (userData: UserType) => {
     const newUserRef = await usersCollection.add({
       ...userData,
       isVerified: false,
+      posts: [],
+      bio: `Hi 👋, I am ${fullName}`,
     });
     const newUserDoc = await newUserRef.get();
     const newUser = {id: newUserDoc.id, ...newUserDoc.data()};
@@ -56,10 +58,28 @@ const loginUser = async (email: string, password: string) => {
   }
 };
 
+const getUserById = async (userId: string) => {
+  try {
+    const userDoc = await firestore().collection('users').doc(userId).get();
+
+    if (!userDoc.exists) {
+      Alert.alert('Error!!', 'User not found');
+      return null;
+    }
+
+    const userData = {id: userDoc.id, ...userDoc.data()};
+
+    return userData;
+  } catch (error) {
+    console.error('Error getting user by ID:', error);
+    return null;
+  }
+};
+
 const isUserExists = async (email: string): Promise<boolean> => {
   const usersCollection = firestore().collection('users');
   const querySnapshot = await usersCollection.where('email', '==', email).get();
   return !querySnapshot.empty;
 };
 
-export {registerUser, loginUser};
+export {registerUser, loginUser, getUserById};

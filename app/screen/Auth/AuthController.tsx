@@ -1,6 +1,10 @@
 import {Component} from 'react';
 import {BackHandler, Alert} from 'react-native';
-import {loginUser, registerUser} from '../../controllers/AuthController';
+import {
+  getUserById,
+  loginUser,
+  registerUser,
+} from '../../controllers/AuthController';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {NavigationProp, ParamListBase} from '@react-navigation/native';
 
@@ -23,7 +27,7 @@ export default class AuthController extends Component<P, S> {
   constructor(props: P) {
     super(props);
     this.state = {
-      isRegister: true,
+      isRegister: false,
       fullName: '',
       email: '',
       password: '',
@@ -123,6 +127,8 @@ export default class AuthController extends Component<P, S> {
         if (user !== undefined && user !== null) {
           await AsyncStorage.setItem('AUTHID', user.id);
           this.setState({isLoading: false});
+          let userDoc = await getUserById(user.id);
+          await AsyncStorage.setItem('USERDETAILS', JSON.stringify(userDoc));
           this.props.navigation?.navigate('Splash');
         }
       } catch (error) {
@@ -139,6 +145,8 @@ export default class AuthController extends Component<P, S> {
       if (user !== undefined && user !== null) {
         await AsyncStorage.setItem('AUTHID', user.id);
         this.setState({isLoading: false});
+        let userDoc = await getUserById(user.id);
+        await AsyncStorage.setItem('USERDETAILS', JSON.stringify(userDoc));
         this.props.navigation?.navigate('Splash');
       } else this.setState({isLoading: false});
     } catch (error) {

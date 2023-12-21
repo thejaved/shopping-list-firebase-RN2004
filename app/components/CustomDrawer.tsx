@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     width: '100%',
-    height: responsiveHeight(25),
+    height: responsiveHeight(5),
     backgroundColor: colors.primary,
   },
   logOutContainer: {

@@ -24,13 +24,6 @@ const AppHeader: React.FC<P> = ({title, onPressRightIcon}) => {
     <View style={styles.container}>
       <Text style={styles.labelTitle}>{title}</Text>
       <View style={styles.rightContainer}>
-        <TouchableOpacity style={styles.btnContainer}>
-          <AntDesign
-            name="plus"
-            color={colors.white}
-            size={responsiveFontSize(2)}
-          />
-        </TouchableOpacity>
         <TouchableOpacity
           onPress={onPressRightIcon}
           style={[styles.btnContainer, styles.menuIcon]}>

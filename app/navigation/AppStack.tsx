@@ -1,5 +1,5 @@
 import AppDrawer from './AppDrawer';
-import {Auth, Profile, Splash} from '../screen';
+import {Auth, CreatePost, Profile, Splash} from '../screen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -25,6 +25,11 @@ function AppStack() {
       <Stack.Screen
         name="Profile"
         component={Profile}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CreatePost"
+        component={CreatePost}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
