@@ -14,6 +14,7 @@ interface S {
   email: string;
   password: string;
   confirmPassword: string;
+  isLoading: boolean;
 }
 
 export default class AuthController extends Component<P, S> {
@@ -27,6 +28,7 @@ export default class AuthController extends Component<P, S> {
       email: '',
       password: '',
       confirmPassword: '',
+      isLoading: false,
     };
   }
 
@@ -115,11 +117,13 @@ export default class AuthController extends Component<P, S> {
       this.validateConfirmPassword(password, confirmPassword)
     ) {
       try {
+        this.setState({isLoading: true});
         const user = await registerUser({fullName, email, password});
 
         if (user !== undefined && user !== null) {
           await AsyncStorage.setItem('AUTHID', user.id);
-          this.props.navigation?.navigate('AppDrawer');
+          this.setState({isLoading: false});
+          this.props.navigation?.navigate('Splash');
         }
       } catch (error) {
         console.error('Error during sign-up:', error);
@@ -130,11 +134,13 @@ export default class AuthController extends Component<P, S> {
   handleLogin = async () => {
     try {
       const {email, password} = this.state;
+      this.setState({isLoading: true});
       const user = await loginUser(email, password);
       if (user !== undefined && user !== null) {
         await AsyncStorage.setItem('AUTHID', user.id);
-        this.props.navigation?.navigate('AppDrawer');
-      }
+        this.setState({isLoading: false});
+        this.props.navigation?.navigate('Splash');
+      } else this.setState({isLoading: false});
     } catch (error) {
       console.error('Error during sign-up:', error);
     }

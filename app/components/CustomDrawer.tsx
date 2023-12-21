@@ -3,7 +3,7 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -14,9 +14,17 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const CustomDrawer = (props: any) => {
-  const logOut = async () => {
-    await AsyncStorage.removeItem('AUTHID');
-    props.navigation.navigate('Splash');
+  const logOut = () => {
+    Alert.alert('Confirm!!', 'Are you sure you want to logout?', [
+      {text: 'No'},
+      {
+        text: 'Yes',
+        onPress: async () => {
+          await AsyncStorage.removeItem('AUTHID');
+          props.navigation.navigate('Splash');
+        },
+      },
+    ]);
   };
   return (
     <View style={styles.container}>
