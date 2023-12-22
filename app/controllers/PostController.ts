@@ -44,4 +44,31 @@ const createPost = async (
   }
 };
 
-export {createPost};
+const deletePost = async (userId: string, postId: string) => {
+  try {
+    const userDoc = await firestore().collection('users').doc(userId).get();
+    const userPosts = userDoc.data()?.posts || [];
+    const postToDelete = userPosts.find((post: any) => post.id === postId);
+
+    if (!postToDelete) {
+      throw new Error('Post not found');
+    }
+
+    const imageRef = storage().refFromURL(postToDelete.imageUrl);
+    await imageRef.delete();
+
+    const updatedPosts = userPosts.filter((post: any) => post.id !== postId);
+
+    await firestore()
+      .collection('users')
+      .doc(userId)
+      .update({posts: updatedPosts});
+
+    Alert.alert('Success', 'Post deleted successfully');
+  } catch (error) {
+    console.error('Error deleting post:', error);
+    Alert.alert('Error', 'Failed to delete post');
+  }
+};
+
+export {createPost, deletePost};

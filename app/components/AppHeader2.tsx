@@ -16,12 +16,22 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 interface P {
+  title: string;
+  loading?: boolean;
+  isPublish?: boolean;
+  lablePublish?: string;
   onPressBack?: ((event: GestureResponderEvent) => void) | undefined;
   onPressPublish?: ((event: GestureResponderEvent) => void) | undefined;
-  loading?: boolean;
 }
 
-const AppHeader2: React.FC<P> = ({onPressBack, onPressPublish, loading}) => {
+const AppHeader2: React.FC<P> = ({
+  title,
+  loading,
+  isPublish,
+  onPressBack,
+  lablePublish,
+  onPressPublish,
+}) => {
   return (
     <View style={styles.createPostHeader}>
       <View style={styles.leftContent}>
@@ -32,12 +42,18 @@ const AppHeader2: React.FC<P> = ({onPressBack, onPressPublish, loading}) => {
             size={responsiveFontSize(3)}
           />
         </TouchableOpacity>
-        <Text style={styles.labelCreatePostStyle}>Create Post</Text>
+        <Text style={styles.labelCreatePostStyle}>{title}</Text>
       </View>
-      <TouchableOpacity style={styles.btnPublish} onPress={onPressPublish}>
-        {loading && <ActivityIndicator color={colors.white} />}
-        {!loading && <Text style={styles.labelPublishStyle}>Publish</Text>}
-      </TouchableOpacity>
+      {isPublish && (
+        <TouchableOpacity style={styles.btnPublish} onPress={onPressPublish}>
+          {loading && <ActivityIndicator color={colors.white} />}
+          {!loading && (
+            <Text style={styles.labelPublishStyle}>
+              {lablePublish ? lablePublish : 'Publish'}
+            </Text>
+          )}
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

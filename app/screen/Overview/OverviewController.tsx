@@ -36,6 +36,9 @@ export default class OverviewController extends Component<P, S> {
   }
 
   componentDidMount() {
+    this.props.navigation?.addListener('focus', () => {
+      this.handleGetAllPost();
+    });
     this.backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       this.handleBackPress,
@@ -72,7 +75,8 @@ export default class OverviewController extends Component<P, S> {
     }
   };
 
-  handlePost = (item: any) => this.props.navigation?.navigate('ViewPost', item);
+  handlePost = (item: any) =>
+    this.props.navigation?.navigate('ViewPost', {item});
 
   onRefresh = () => {
     this.setState({refreshing: true});
