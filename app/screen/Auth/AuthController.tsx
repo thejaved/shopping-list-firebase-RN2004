@@ -130,7 +130,7 @@ export default class AuthController extends Component<P, S> {
           let userDoc = await getUserById(user.id);
           await AsyncStorage.setItem('USERDETAILS', JSON.stringify(userDoc));
           this.props.navigation?.navigate('Splash');
-        }
+        } else this.setState({isLoading: false});
       } catch (error) {
         console.error('Error during sign-up:', error);
       }

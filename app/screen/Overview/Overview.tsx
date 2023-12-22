@@ -28,7 +28,9 @@ export default class Overview extends OverviewController {
 
   renderItem = ({item}: any) => {
     return (
-      <TouchableOpacity style={styles.postItemContainer}>
+      <TouchableOpacity
+        style={styles.postItemContainer}
+        onPress={() => this.handlePost(item)}>
         <Image style={styles.image} source={{uri: item.imageUrl}} />
         <View style={styles.postContent}>
           <Text style={styles.labelTitleStyle}>{item.title}</Text>

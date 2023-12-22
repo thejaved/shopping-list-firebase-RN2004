@@ -1,6 +1,6 @@
 import React from 'react';
 import {colors, fonts} from '../../config';
-import {bgImage} from '../../assets/images';
+import {bgImage} from '../../../assets/images';
 import {ImageBackground, TouchableOpacity} from 'react-native';
 import {
   responsiveFontSize,

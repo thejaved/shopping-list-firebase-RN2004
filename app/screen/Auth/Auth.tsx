@@ -15,7 +15,7 @@ import {
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
-import {bgImage} from '../../assets/images';
+import {bgImage} from '../../../assets/images';
 import {AppButton, AppInput} from '../../components';
 
 export default class Auth extends AuthController {

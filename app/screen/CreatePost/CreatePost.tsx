@@ -22,6 +22,8 @@ export default class CreatePost extends CreatePostController {
       <>
         <SafeAreaView style={styles.container}>
           <AppHeader2
+            isPublish
+            title="Create Post"
             loading={this.state.isLoading}
             onPressBack={this.handleBack}
             onPressPublish={this.handlePublish}
