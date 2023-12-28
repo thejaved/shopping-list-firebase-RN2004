@@ -73,9 +73,11 @@ const styles = StyleSheet.create({
     fontFamily: fonts.KanitRegular,
     fontSize: responsiveFontSize(3),
     marginTop: responsiveWidth(3),
+    color: colors.black,
   },
   labelDescriptionStyle: {
     fontFamily: fonts.KanitRegular,
     marginTop: responsiveWidth(1),
+    color: colors.black,
   },
 });

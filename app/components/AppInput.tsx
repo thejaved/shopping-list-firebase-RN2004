@@ -25,7 +25,12 @@ const AppInput: React.FC<AppInputProps> = ({
 }) => {
   return (
     <View style={[styles.inputContianer, containerStyle]}>
-      <TextInput style={styles.input} placeholder={placeholder} {...props} />
+      <TextInput
+        style={styles.input}
+        placeholder={placeholder}
+        placeholderTextColor={colors.black}
+        {...props}
+      />
     </View>
   );
 };
@@ -44,6 +49,7 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
     backgroundColor: colors.white,
     fontFamily: fonts.KanitRegular,
+    color: colors.black,
     paddingHorizontal: responsiveWidth(2),
     borderTopLeftRadius: responsiveWidth(2),
     borderTopRightRadius: responsiveWidth(2),
