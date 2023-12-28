@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   lablePickerStyle: {
+    color: colors.black,
     fontFamily: fonts.KanitRegular,
   },
   inputContainerStyle: {

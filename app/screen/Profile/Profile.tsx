@@ -19,7 +19,11 @@ export default class Profile extends ProfileController {
         <SafeAreaView style={styles.container}>
           <ImageBackground style={styles.bgContainer} source={bgImage}>
             <View style={styles.profileContainer}>
-              <AntDesign name="user" size={responsiveFontSize(6)} />
+              <AntDesign
+                name="user"
+                size={responsiveFontSize(6)}
+                color={colors.black}
+              />
             </View>
           </ImageBackground>
           <View style={styles.contentContainer}>
@@ -102,8 +106,10 @@ const styles = StyleSheet.create({
   lableName: {
     fontFamily: fonts.KanitRegular,
     fontSize: responsiveFontSize(3),
+    color: colors.black,
   },
   lableDes: {
+    color: colors.black,
     fontFamily: fonts.KanitRegular,
   },
 });

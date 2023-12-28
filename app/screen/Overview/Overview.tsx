@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(2.5),
   },
   labelDescriptionStyle: {
+    color: colors.black,
     fontFamily: fonts.KanitRegular,
   },
   extraSpace: {
@@ -108,6 +109,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   labelPost: {
+    color: colors.black,
     fontFamily: fonts.KanitRegular,
   },
 });

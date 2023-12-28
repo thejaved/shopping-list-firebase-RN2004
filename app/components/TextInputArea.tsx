@@ -29,6 +29,7 @@ const TextInputArea: React.FC<TextInputAreaProps> = ({
         multiline
         style={styles.input}
         placeholder={placeholder}
+        placeholderTextColor={colors.black}
         {...props}
       />
     </View>
@@ -51,5 +52,6 @@ const styles = StyleSheet.create({
     width: '100%',
     fontFamily: fonts.KanitRegular,
     paddingHorizontal: responsiveWidth(2),
+    color: colors.black,
   },
 });
